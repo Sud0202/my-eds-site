@@ -255,3 +255,7 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+.section-container {
+  background-color: #c5c5c5;
+}
+
