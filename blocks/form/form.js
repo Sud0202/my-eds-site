@@ -95,45 +95,47 @@ export default function decorate(block) {
     // Append the form content to the form block
     formBlock.appendChild(formContent);
 
-    // Append the entire form block to the body
-    document.body.appendChild(formBlock);
+    // Find the existing form-wrapper and append the feedback form inside it
+    const formWrapper = document.querySelector('.form-wrapper');
+    if (formWrapper) {
+        formWrapper.appendChild(formBlock);
+    }
 
-   // Handle form submission
-form.addEventListener('submit', function(event) {
-    event.preventDefault();
+    // Handle form submission
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-    // Collect the form data
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const experience = document.getElementById('experience').value;
-    const comments = document.getElementById('comments').value;
+        // Collect the form data
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const experience = document.getElementById('experience').value;
+        const comments = document.getElementById('comments').value;
 
-    // Your custom endpoint (replace this with the URL of your choice)
-    const customURL = "https://google.com/submit"; 
+        // Your custom endpoint (replace this with the URL of your choice)
+        const customURL = "https://google.com/submit"; 
 
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('experience', experience);
-    formData.append('comments', comments);
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('experience', experience);
+        formData.append('comments', comments);
 
-    // Send the data to your custom endpoint via POST request
-    fetch(customURL, {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => {
-        if (response.ok) {
-            alert('Thank you for your feedback!');
-            form.reset(); // Reset the form after submission
-        } else {
+        // Send the data to your custom endpoint via POST request
+        fetch(customURL, {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Thank you for your feedback!');
+                form.reset(); // Reset the form after submission
+            } else {
+                alert('There was an error submitting your feedback. Please try again.');
+            }
+        })
+        .catch(error => {
+            console.error('Error submitting feedback:', error);
             alert('There was an error submitting your feedback. Please try again.');
-        }
-    })
-    .catch(error => {
-        console.error('Error submitting feedback:', error);
-        alert('There was an error submitting your feedback. Please try again.');
+        });
     });
-});
-
 }
