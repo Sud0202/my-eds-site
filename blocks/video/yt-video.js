@@ -41,7 +41,7 @@ function embedYoutube(url, autoplay, background) {
     }
 }
 
-const youtubeUrl = new URL('https://www.youtube.com/watch?v=DvBRj--sUMU');
+const youtubeUrl = new URL('');
 const autoplay = true;
 const background = false;
 embedYoutube(youtubeUrl, autoplay, background);
