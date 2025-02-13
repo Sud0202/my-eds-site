@@ -1,1 +1,5 @@
-
+sitemaps:
+  example:
+    lastmod: 2025-02-13
+    default: en
+    extension: .html
