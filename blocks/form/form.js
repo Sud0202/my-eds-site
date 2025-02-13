@@ -1,26 +1,24 @@
 export default function decorate(block) {
-    // Create the form container
+
     const formBlock = document.createElement('div');
     formBlock.classList.add('feedback-form-block');
-    formBlock.setAttribute('data-block-name', 'form');
-    formBlock.setAttribute('data-block-status', 'loaded');
 
-    // Create the form content
+   
     const formContent = document.createElement('div');
     formContent.classList.add('feedback-form-content');
 
-    // Create a title for the form
+    
     const title = document.createElement('h2');
     title.classList.add('feedback-form-title');
     title.textContent = 'Feedback Form';
     formContent.appendChild(title);
 
-    // Create the actual form
+   
     const form = document.createElement('form');
     form.id = 'feedbackForm';
     form.classList.add('feedback-form');
 
-    // Create Name input
+    
     const nameLabel = document.createElement('label');
     nameLabel.setAttribute('for', 'name');
     nameLabel.classList.add('feedback-form-label');
@@ -32,7 +30,7 @@ export default function decorate(block) {
     nameInput.classList.add('feedback-form-input');
     nameInput.required = true;
 
-    // Create Email input
+
     const emailLabel = document.createElement('label');
     emailLabel.setAttribute('for', 'email');
     emailLabel.classList.add('feedback-form-label');
@@ -44,7 +42,6 @@ export default function decorate(block) {
     emailInput.classList.add('feedback-form-input');
     emailInput.required = true;
 
-    // Create Experience dropdown
     const experienceLabel = document.createElement('label');
     experienceLabel.setAttribute('for', 'experience');
     experienceLabel.classList.add('feedback-form-label');
@@ -61,7 +58,7 @@ export default function decorate(block) {
         experienceSelect.appendChild(option);
     });
 
-    // Create Comments textarea
+
     const commentsLabel = document.createElement('label');
     commentsLabel.setAttribute('for', 'comments');
     commentsLabel.classList.add('feedback-form-label');
@@ -72,13 +69,12 @@ export default function decorate(block) {
     commentsTextarea.classList.add('feedback-form-textarea');
     commentsTextarea.required = true;
 
-    // Create Submit Button
+    
     const submitButton = document.createElement('button');
     submitButton.textContent = 'Submit Feedback';
     submitButton.type = 'submit';
     submitButton.classList.add('feedback-form-button');
 
-    // Append all form elements to the form
     form.appendChild(nameLabel);
     form.appendChild(nameInput);
     form.appendChild(emailLabel);
@@ -89,30 +85,24 @@ export default function decorate(block) {
     form.appendChild(commentsTextarea);
     form.appendChild(submitButton);
 
-    // Append the form to the form content
     formContent.appendChild(form);
 
-    // Append the form content to the form block
     formBlock.appendChild(formContent);
 
-    // Find the existing form-wrapper and append the feedback form inside it
     const formWrapper = document.querySelector('.form-wrapper');
     if (formWrapper) {
         formWrapper.appendChild(formBlock);
     }
 
-    // Handle form submission
     form.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        // Collect the form data
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const experience = document.getElementById('experience').value;
         const comments = document.getElementById('comments').value;
 
-        // Your custom endpoint (replace this with the URL of your choice)
-        const customURL = "https://google.com/submit"; 
+        const submitURL = "https://google.com/submit"; 
 
         const formData = new FormData();
         formData.append('name', name);
@@ -120,15 +110,14 @@ export default function decorate(block) {
         formData.append('experience', experience);
         formData.append('comments', comments);
 
-        // Send the data to your custom endpoint via POST request
-        fetch(customURL, {
+        fetch(submitURL, {
             method: 'POST',
             body: formData,
         })
         .then(response => {
             if (response.ok) {
                 alert('Thank you for your feedback!');
-                form.reset(); // Reset the form after submission
+                form.reset();
             } else {
                 alert('There was an error submitting your feedback. Please try again.');
             }

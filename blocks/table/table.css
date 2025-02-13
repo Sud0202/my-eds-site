@@ -40,16 +40,3 @@ td {
     border-bottom: 1px solid #ddd;
 }
 
-@media (max-width: 768px) {
-    table {
-        font-size: 14px;
-    }
-
-    th, td {
-        padding: 8px 10px;
-    }
-
-    p {
-        font-size: 14px;
-    }
-}
