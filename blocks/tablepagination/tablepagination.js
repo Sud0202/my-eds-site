@@ -3,7 +3,6 @@ export default async function decorate(block) {
     const resultsPerPage = 20;
 
     async function renderTable() {
-        try {
             const response = await fetch("http://localhost:3000/sampledata.json");
             const data = await response.json();
             const totalPages = Math.ceil(data.total / resultsPerPage);
@@ -12,9 +11,6 @@ export default async function decorate(block) {
             block.innerHTML = '';
             block.appendChild(createTable(data, offset));
             block.appendChild(createPagination(totalPages));
-        } catch (error) {
-            console.error('Error:', error);
-        }
     }
 
     function createTable(data, offset) {

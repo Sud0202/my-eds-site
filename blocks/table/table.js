@@ -1,10 +1,5 @@
 export default async function decorate(block) {
-    try {
         const response = await fetch("http://localhost:3000/sampledata.json");
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
 
         const data = await response.json();
 
@@ -37,9 +32,4 @@ export default async function decorate(block) {
         table.appendChild(tbody);
         
         block.appendChild(table);
-
-    } 
-    catch (error) {
-        console.error('Error:', error);
-    }
 }

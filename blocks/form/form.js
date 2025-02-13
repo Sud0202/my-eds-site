@@ -116,15 +116,11 @@ export default function decorate(block) {
         })
         .then(response => {
             if (response.ok) {
-                alert('Thank you for your feedback!');
+                alert('Thank you');
                 form.reset();
             } else {
-                alert('There was an error submitting your feedback. Please try again.');
+                alert('Please try again.');
             }
         })
-        .catch(error => {
-            console.error('Error submitting feedback:', error);
-            alert('There was an error submitting your feedback. Please try again.');
-        });
     });
 }
